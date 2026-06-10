@@ -1,0 +1,75 @@
+{
+  "name": "@shapeshift-labs/frontier-framework",
+  "version": "0.1.2",
+  "description": "High-level Frontier framework package with config, CLI, Vite builds, monorepo scaffolding, sync transport contracts, split deploy artifacts, and evidence manifests.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/siliconjungle/-shapeshift-labs-frontier-framework.git"
+  },
+  "homepage": "https://github.com/siliconjungle/-shapeshift-labs-frontier-framework#readme",
+  "bugs": {
+    "url": "https://github.com/siliconjungle/-shapeshift-labs-frontier-framework/issues"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "frontier": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./cli": {
+      "types": "./dist/cli.d.ts",
+      "import": "./dist/cli.js",
+      "default": "./dist/cli.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "bench.mjs",
+    "README.md",
+    "package.json"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@shapeshift-labs/frontier": "0.1.9",
+    "@shapeshift-labs/frontier-application": "0.1.0",
+    "@shapeshift-labs/frontier-ast-walk": "0.1.0",
+    "@shapeshift-labs/frontier-auth": "0.1.0",
+    "@shapeshift-labs/frontier-component-preview": "0.1.2",
+    "@shapeshift-labs/frontier-documentation": "0.1.1",
+    "@shapeshift-labs/frontier-dom": "0.1.0",
+    "@shapeshift-labs/frontier-effects": "0.1.0",
+    "@shapeshift-labs/frontier-linter": "0.1.0",
+    "@shapeshift-labs/frontier-manifest": "0.1.0",
+    "@shapeshift-labs/frontier-migrations": "0.1.2",
+    "@shapeshift-labs/frontier-route": "0.1.0",
+    "@shapeshift-labs/frontier-schema": "0.1.1",
+    "@shapeshift-labs/frontier-test": "0.1.0",
+    "@shapeshift-labs/frontier-tools": "0.1.0",
+    "@shapeshift-labs/frontier-trace": "0.1.0",
+    "@shapeshift-labs/frontier-view": "0.1.0",
+    "@shapeshift-labs/frontier-workflow": "0.1.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.14"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "npm run build && npm run typecheck && node test/smoke.mjs && node test/cli-build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p test/tsconfig.json --noEmit",
+    "harness": "npm run build && node dist/cli.js harness --cwd . --harness-target tests --json",
+    "fuzz": "npm run build && node dist/cli.js fuzz --cwd . --json",
+    "bench": "npm run build && node dist/cli.js bench --cwd . --json",
+    "bench:package": "npm run build && node bench.mjs",
+    "pack:dry": "npm run build && npm pack --dry-run"
+  }
+}
