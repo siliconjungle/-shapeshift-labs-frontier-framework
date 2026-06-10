@@ -1,6 +1,6 @@
 {
   "name": "@shapeshift-labs/frontier-framework",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "High-level Frontier framework package with config, CLI, Vite builds, monorepo scaffolding, sync transport contracts, split deploy artifacts, and evidence manifests.",
   "type": "module",
   "license": "MIT",
@@ -51,7 +51,7 @@
     "@shapeshift-labs/frontier-migrations": "0.1.2",
     "@shapeshift-labs/frontier-route": "0.1.0",
     "@shapeshift-labs/frontier-schema": "0.1.1",
-    "@shapeshift-labs/frontier-test": "0.1.0",
+    "@shapeshift-labs/frontier-test": "0.1.1",
     "@shapeshift-labs/frontier-tools": "0.1.0",
     "@shapeshift-labs/frontier-trace": "0.1.0",
     "@shapeshift-labs/frontier-view": "0.1.0",

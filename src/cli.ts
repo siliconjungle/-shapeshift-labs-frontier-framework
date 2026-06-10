@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, realpathSync } from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -5760,7 +5760,12 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
+function isFrontierCliEntrypoint(): boolean {
+  if (!process.argv[1]) return false;
+  return import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href;
+}
+
+if (isFrontierCliEntrypoint()) {
   runFrontierCli().catch((error) => {
     process.stderr.write((error instanceof Error ? error.stack ?? error.message : String(error)) + '\n');
     process.exitCode = 1;
